@@ -1,0 +1,98 @@
+{% extends "layout.html" %} {% block content %}
+<div class="content-section">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <!-- <div>
+      <img class="img-fluid mb-1" src="{{ url_for('static', filename='images/' + 'visitnepalreg.jpg') }}" />
+    </div> -->
+    <div>
+      <legend class="mb-0 mt-1 text-uppercase text-primary bold">WANNA SIGNUP?</legend>
+    </div>
+    <fieldset class="form-group">
+      <div class="form-row">
+        <!--? FULLNAME -->
+        <div class="form-group col-md-6">
+          {{ form.fullname.label(class="form-control-label text-uppercase bold text-dark small") }}
+          {% if form.fullname.errors %}
+          {{ form.fullname(class="form-controlis-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.fullname.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{ form.fullname(class="form-control") }}
+          {% endif %}
+        </div>
+        <!--? USERNAME -->
+        <div class="form-group col-md-6">
+          {{ form.username.label(class="form-control-label text-uppercase bold text-dark small") }}
+          {% if form.username.errors %}
+          {{ form.username(class="form-control is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %}
+          {{ form.username(class="form-control") }}
+          {% endif %}
+        </div>
+      </div>
+      <!--? EMAIL ADDRESS -->
+      <div class="form-group">
+        {{ form.email.label(class="form-control-label text-uppercase bold text-dark small") }}
+        {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %} {{ form.email(class="form-control") }}
+        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+        {% endif %}
+      </div>
+      <div class="form-row">
+        <!--? PASSWORD -->
+        <div class="form-group col-md-6">
+          {{ form.password.label(class="form-control-label text-uppercase bold text-dark small") }}
+          {% if form.password.errors %}
+          {{ form.password(class="form-control is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{ form.password(class="form-control text-uppercase bold text-dark small") }}
+          <small class="form-text text-muted">Password must be between 6 and 20 characters long.</small>
+          {%endif %}
+        </div>
+        <!--? CONFIRM PASSWORD -->
+        <div class="form-group col-md-6">
+          {{ form.confirm_password.label(class="form-control-label text-uppercase bold text-dark small") }}
+          {% if form.confirm_password.errors %}
+          {{form.confirm_password(class="form-control is-invalid")}}
+
+          <div class="invalid-feedback">
+            {% for error in form.confirm_password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{ form.confirm_password(class="form-control") }}
+          {% endif %}
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      {{ form.submit(class="btn btn-block bold btn-lg btn-warning") }}
+    </div>
+  </form>
+</div>
+<div class="text-center pt-2 pb-2">
+  <small class="text-muted text-uppercase bold">
+    Already Have An Account?
+    <a class="ml-2 text-uppercase bold" href=" {{ url_for('users.login') }}">Sign In</a>
+  </small>
+</div>
+{% endblock content %}

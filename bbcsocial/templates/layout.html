@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- META TAGS -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/' + 'favicon.ico') }}">
+  <!-- BOOTSTRAP AND OTHER CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'better-nav.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/' + 'main.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'font-awesome.min.css') }}">
+
+
+  {% if title %}<title>bbcsocial - {{ title }}</title>{% else %}<title>bbcsocial</title>{% endif %}</head>
+
+<body class="nav-bar">
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('chat.chats') }}">Connecting</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+          aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          {% if current_user.is_authenticated %}
+          <div class="navbar-nav mr-auto">
+
+            {% if current_user.id == 1 %}
+            <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+            href="{{ url_for('admin.index') }}">Dashboard</a>
+             {% endif %}
+             <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+            href="{{ url_for('users.logout') }}">Logout</a>
+          </div>
+          {% else %}
+          <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+            href="{{ url_for('users.login') }}">Login</a>
+          <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+            href="{{ url_for('users.register') }}">Register</a>
+          {% endif %}
+        </div>
+      </div>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} small font-weight-bold">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </main>
+
+  <!-- JAVASCRIPT SECTION -->
+  <script src="{{ url_for('static', filename='js/' + 'jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/' + 'jscroll.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/' + 'main.js') }}"></script>
+  <script src="{{ url_for('static', filename= 'js/' + 'better-nav.min.js') }}"></script>
+
+  <!-- FIRST POPPER.JS AND THEN BOOTSTRAP.JS -->
+  <script src="{{ url_for('static', filename='js/' + 'popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename= 'js/' + 'bootstrap.min.js') }}"></script>
+</body>
+</html>

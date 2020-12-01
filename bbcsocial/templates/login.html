@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <!--<div class="row">
+       <div class="col-md-6">
+       <div>
+          <img class="img-fluid pt-3" src="{# url_for('static', filename='images/' + 'visitnepal.jpg') #}" />
+        </div> 
+      </div> -->
+    <div class="col-md-12">
+      <fieldset class="form-group">
+        <p class="mb-2 mt-3 text-uppercase bold text-center">FILL IN THE DETAILS TO GET STARTED!!</p>
+        <div class=" form-group">
+          {{ form.email.label(class="form-control-label text-uppercase small font-weight-bold text-muted") }}
+          {% if form.email.errors %}
+          {{ form.email(class="form-control is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{ form.email(class="form-control") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.password.label(class="form-control-label text-uppercase small font-weight-bold text-muted") }}
+          {% if form.password.errors %}
+          {{ form.password(class="form-control is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{ form.password(class="form-control") }}
+          {% endif %}
+        </div>
+        <div class="form-check">
+          {{ form.remember(class="form-check-input") }}
+          {{ form.remember.label(class="form-check-label text-uppercase small font-weight-bold text-muted") }}
+        </div>
+      </fieldset>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-warning btn-block font-weight-bold text-uppercase") }}
+      </div>
+  </form>
+</div>
+</div>
+<div class="pt-2 pb-2 text-center">
+  <small class="text-muted text-uppercase small font-weight-bold">Need An Account?<a class="ml-2"
+      href="{{ url_for('users.register') }}">Sign Up Now</a>
+  </small>
+</div>
+
+{% endblock content %}
