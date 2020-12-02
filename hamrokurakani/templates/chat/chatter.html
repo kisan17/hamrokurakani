@@ -104,7 +104,7 @@
                         {{ msg.message }} · <a class="fixblue" href="{{ deletemessage }}">
                             <i class="fa fa-trash-o"></i></a></p>
                     {% else %}
-                    <p title="{{msg.timestamp | humanify }} ago">{{ msg.message }}</p>
+                    <p title="{{msg.timestamp | humanify }} ago">{{ msg.message | decrypt }}</p>
                     {% endif %}
                 </li>
                 {% endfor %}
