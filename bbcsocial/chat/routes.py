@@ -73,12 +73,12 @@ def text(message):
     receiver = session.get('receiver_id')
     room = session.get('room')
     user = User.query.filter_by(id=receiver).first_or_404()
-    msg = Message(author=current_user, recipient=user, message=message['msg'])
+    msg = Message(author=current_user, recipient=user, message=manager(message['msg'],"kisan123","encrypt"))
     db.session.add(msg)
     user.unread_message_count()
     db.session.commit()
     emit('message', {
-         'msg': message['msg'], 'profileimage': profileimg}, room=room, include_self=False)
+         'msg':manager( message['msg'],"kisan123","decrypt"), 'profileimage': profileimg}, room=room, include_self=False)
 
 
 @socketio.on('left', namespace='/chatwith')
