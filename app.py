@@ -1,5 +1,5 @@
-from bbcsocial import create_app, socketio
-from bbcsocial.models import *
+from hamrokurakani import create_app, socketio
+from hamrokurakani.models import *
 import subprocess
 import sys
 

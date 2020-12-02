@@ -3,7 +3,7 @@ from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, RadioField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, InputRequired
 from flask_login import current_user
-from bbcsocial.models import User
+from hamrokurakani.models import User
 
 
 class RegistrationForm(FlaskForm):

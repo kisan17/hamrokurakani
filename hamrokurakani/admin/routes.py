@@ -2,8 +2,8 @@ from flask import Flask, redirect, url_for, request
 from flask_admin import Admin, AdminIndexView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user, login_user, logout_user
-from bbcsocial.models import User, Message
-from bbcsocial import db, login_manager
+from hamrokurakani.models import User, Message
+from hamrokurakani import db, login_manager
 
 app = Flask(__name__)
 

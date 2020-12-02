@@ -1,10 +1,10 @@
 from flask import session, redirect, url_for, render_template, request, Blueprint
 from flask_socketio import emit, join_room, leave_room
 from flask_login import current_user, login_required
-from bbcsocial import socketio, bcrypt, db
-from bbcsocial.models import User, Message
+from hamrokurakani import socketio, bcrypt, db
+from hamrokurakani.models import User, Message
 from datetime import datetime
-from bbcsocial.core.des import manager
+from hamrokurakani.core.des import manager
 
 chyat = Blueprint('chat', __name__)
 
@@ -78,7 +78,7 @@ def text(message):
     user.unread_message_count()
     db.session.commit()
     emit('message', {
-         'msg':manager( message['msg'],"kisan123","decrypt"), 'profileimage': profileimg}, room=room, include_self=False)
+         'msg': message['msg'], 'profileimage': profileimg}, room=room, include_self=False)
 
 
 @socketio.on('left', namespace='/chatwith')

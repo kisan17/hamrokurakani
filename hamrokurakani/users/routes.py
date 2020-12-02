@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
-from bbcsocial import db, bcrypt, login_manager
-from bbcsocial.models import User
-from bbcsocial.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
+from hamrokurakani import db, bcrypt, login_manager
+from hamrokurakani.models import User
+from hamrokurakani.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from datetime import datetime
 
 users = Blueprint('users', __name__)

@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import url_for, current_app, Blueprint
-from bbcsocial.models import Message
+from hamrokurakani.models import Message
 from flask_login import current_user
 
 

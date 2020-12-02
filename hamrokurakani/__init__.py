@@ -23,10 +23,10 @@ def create_app(config_class=Configuration):
     socketio.init_app(app)
 
     """Importing Blueprint packages."""
-    from bbcsocial.admin.routes import admin
-    from bbcsocial.chat.routes import chyat
-    from bbcsocial.users.routes import users
-    from bbcsocial.core.filters import core
+    from hamrokurakani.admin.routes import admin
+    from hamrokurakani.chat.routes import chyat
+    from hamrokurakani.users.routes import users
+    from hamrokurakani.core.filters import core
 
 
     """ Register blueprint app for ready to use."""
