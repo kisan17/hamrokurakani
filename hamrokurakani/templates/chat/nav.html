@@ -24,14 +24,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
           {% if current_user.is_authenticated %}
-          <div class="navbar-nav mr-auto">
 
+          <div class="navbar-nav mr-auto">
             {% if current_user.id == 1 %}
             <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
             href="{{ url_for('admin.index') }}">Dashboard</a>
              {% endif %}
              <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
             href="{{ url_for('users.logout') }}">Logout</a>
+          </div>
+          <div class="navbar-nav ml-auto">
+            <span class="text-white">
+              @{{ current_user.username }}
+            </span>
           </div>
           {% else %}
           <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
