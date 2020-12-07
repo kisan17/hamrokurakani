@@ -126,43 +126,31 @@ SboxesArray = [
     ]
 ]
 
-
-def manager(plaintext, key, type):
-
-    # print()
-    # # Taking inputs from the user
-    # plaintext = input("Enter the message to be encrypted : ")
-    # key = input("Enter a key of 8 length (64-bits) (characters or numbers only) : ")
-    # print()
-
-    # # Printing result
-    # print()
-    # print("Encrypted Ciphertext is : %r " % ciphertext)
-    # print("Decrypted plaintext is  : ", plaintext)
-    # print()
-
-    # Checking if key is valid or not
-    if len(key) != 8:
-        print("Invalid Key. Key should be of 8 length (8 bytes).")
-        return
-
-    # Determining if padding is required
-    isPaddingRequired = (len(plaintext) % 8 != 0)
-
-    # Encryption
-    ciphertext = DESEncryption(key, plaintext, isPaddingRequired)
-
-    # Decryption
-    plaintext = DESDecryption(key, ciphertext, isPaddingRequired)
-
-    if type == "encrypt":
-        return ciphertext
-
-    elif type == "decrypt":
-        return plaintext
+class Manager:
+    def __init__ (self, key):
+        self.key = key
     
-    else:
-        pass
+    def encrypt(self, plaintext):
+
+        # Checking if key is valid or not
+        if len(self.key) != 8:
+            return print("Key should be of 8 length (8 bytes).")
+        
+        # Determining if padding is required
+        isPaddingRequired = (len(plaintext) % 8 != 0)
+        
+        return DESEncryption(self.key, plaintext, isPaddingRequired)
+
+    def decrypt(self, ciphertext):
+
+        # Checking if key is valid or not
+        if len(self.key) != 8:
+            return print("Key should be of 8 length (8 bytes).")
+
+        # Determining if padding is required
+        isPaddingRequired = (len(ciphertext) % 8 == 0)
+
+        return DESDecryption(self.key, ciphertext, isPaddingRequired)
 
 
 def DESEncryption(key, text, padding):

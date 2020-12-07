@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import url_for, current_app, Blueprint
 from hamrokurakani.models import Message
 from flask_login import current_user
-from hamrokurakani.core.des import manager
+from hamrokurakani.core.des import Manager
 
 core = Blueprint('core', __name__)
 
@@ -80,7 +80,8 @@ def human_date(datetime_of_event):
 
 @core.app_template_filter('decrypt')
 def decrypt_message(given_message):
-    return manager(given_message,"kisan123","decrypt")
+    manager = Manager("kisan123")
+    return manager.decrypt(given_message)
 
 
 @core.app_template_filter('isactive')

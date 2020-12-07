@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from hamrokurakani import socketio, bcrypt, db
 from hamrokurakani.models import User, Message
 from datetime import datetime
-from hamrokurakani.core.des import manager
+from hamrokurakani.core.des import Manager
 
 chyat = Blueprint('chat', __name__)
 
@@ -38,6 +38,7 @@ def chatwith(user):
     msgs_sent = list(Message.query.filter_by(
         recipient_id=getuser.id, sender_id=current_user.id).all())
     messages = msgs_received + msgs_sent
+    
     messages.sort(key=lambda order_by: order_by.timestamp)
     current_user.last_message_read_time = datetime.now()
     # ? NEED TO USE AJAX HERE current_user.unread_message_count = msgs_received.count()
@@ -69,11 +70,12 @@ def joined(message):
 
 @socketio.on('text', namespace='/chatwith')
 def text(message):
+    manager = Manager("kisan123")
     profileimg = current_user.image_file
     receiver = session.get('receiver_id')
     room = session.get('room')
     user = User.query.filter_by(id=receiver).first_or_404()
-    msg = Message(author=current_user, recipient=user, message=manager(message['msg'],"kisan123","encrypt"))
+    msg = Message(author=current_user, recipient=user, message= manager.encrypt(message['msg']))
     db.session.add(msg)
     user.unread_message_count()
     db.session.commit()
