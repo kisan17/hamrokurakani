@@ -126,19 +126,20 @@ SboxesArray = [
     ]
 ]
 
+
 class Manager:
-    def __init__ (self, key):
+    def __init__(self, key):
         self.key = key
-    
+
     def encrypt(self, plaintext):
 
         # Checking if key is valid or not
         if len(self.key) != 8:
             return print("Key should be of 8 length (8 bytes).")
-        
+
         # Determining if padding is required
         isPaddingRequired = (len(plaintext) % 8 != 0)
-        
+
         return DESEncryption(self.key, plaintext, isPaddingRequired)
 
     def decrypt(self, ciphertext):
