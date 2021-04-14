@@ -10,4 +10,5 @@ def make_shell_context():
 
 
 if __name__ == '__main__':
+    app.jinja_env.cache = {}
     socketio.run(app, debug=True)
