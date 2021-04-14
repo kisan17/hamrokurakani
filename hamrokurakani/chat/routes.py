@@ -74,7 +74,7 @@ def joined(message):
 @socketio.on('text', namespace='/chatwith')
 def text(message):
     manager = Manager("kisan123")
-    profileimg = current_user.image_file
+    profileimg = f"/static/profilepics/{current_user.image_file}"
     receiver = session.get('receiver_id')
     room = session.get('room')
     user = User.query.filter_by(id=receiver).first_or_404()
@@ -84,7 +84,7 @@ def text(message):
     user.unread_message_count()
     db.session.commit()
     emit('message', {
-         'msg': message['msg'], 'profileimage': profileimg}, room=room, include_self=False)
+         'msg': message['msg'], 'userImg': profileimg}, room=room, include_self=False)
 
 
 @socketio.on('left', namespace='/chatwith')

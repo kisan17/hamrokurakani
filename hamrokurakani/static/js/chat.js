@@ -37,7 +37,7 @@ $(document).ready(function () {
 
   socket.on('message', function (data) {
     if (data.msg !== "") {
-      var replies = `<li class='sent'><img src=${currentUserImg}><p>`;
+      var replies = `<li class='sent'><img src=${data.userImg}><p>`;
       $(replies + data.msg + '</p></li>').appendTo($('.messages ul'));
       $('.contact.active .preview').html('<span>' + data.msg + '</span>');
       $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
