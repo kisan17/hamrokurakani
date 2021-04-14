@@ -6,13 +6,15 @@ from hamrokurakani.models import User, Message
 from datetime import datetime
 from hamrokurakani.core.des import Manager
 
-chyat = Blueprint('chat', __name__)
+chyat = Blueprint('chat', __name__, template_folder='templates')
+
 
 @chyat.route('/')
 @login_required
 def home():
     users = User.query.all()
     return render_template('home.html', users=users)
+
 
 @chyat.route('/chats')
 @login_required
@@ -38,7 +40,7 @@ def chatwith(user):
     msgs_sent = list(Message.query.filter_by(
         recipient_id=getuser.id, sender_id=current_user.id).all())
     messages = msgs_received + msgs_sent
-    
+
     messages.sort(key=lambda order_by: order_by.timestamp)
     current_user.last_message_read_time = datetime.now()
     # ? NEED TO USE AJAX HERE current_user.unread_message_count = msgs_received.count()
@@ -75,7 +77,8 @@ def text(message):
     receiver = session.get('receiver_id')
     room = session.get('room')
     user = User.query.filter_by(id=receiver).first_or_404()
-    msg = Message(author=current_user, recipient=user, message= manager.encrypt(message['msg']))
+    msg = Message(author=current_user, recipient=user,
+                  message=manager.encrypt(message['msg']))
     db.session.add(msg)
     user.unread_message_count()
     db.session.commit()

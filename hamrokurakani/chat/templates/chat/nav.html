@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'better-nav.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'sourcesanspro.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/' + 'chat.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/' + 'main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + 'reset.min.css') }}">
+  </head>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('chat.chats') }}">hamrokurakani</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+          aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          {% if current_user.is_authenticated %}
+
+          <div class="navbar-nav mr-auto">
+            {% if current_user.id == 1 %}
+            <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+              href="{{ url_for('admin.index') }}">Dashboard</a>
+            {% endif %}
+            <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+              href="{{ url_for('users.logout') }}">Logout</a>
+          </div>
+          <div class="navbar-nav ml-auto">
+            <span class="text-white">
+              @{{ current_user.username }}
+            </span>
+          </div>
+          {% else %}
+          <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+            href="{{ url_for('users.login') }}">Login</a>
+          <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
+            href="{{ url_for('users.register') }}">Register</a>
+          {% endif %}
+        </div>
+      </div>
+      </div>
+    </nav>
+  </header>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+
+  <!-- JAVASCRIPT SECTION -->
+  <script src="{{ url_for('static', filename='js/' + 'jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/' + 'socket.io.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/' + 'chat.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/' + 'popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename= 'js/' + 'bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename= 'js/' + 'better-nav.min.js') }}"></script>
+
+</html>
