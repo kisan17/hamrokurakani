@@ -1,4 +1,6 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port + '/chatwith');
+// get current user profileimage
+var currentUserImg = $('img#profile-img').attr('src');
 
 $(document).ready(function () {
 
@@ -35,7 +37,7 @@ $(document).ready(function () {
 
   socket.on('message', function (data) {
     if (data.msg !== "") {
-      var replies = "<li class='sent'><img src='/static/profilepics/" + data.profileimage + "'><p>";
+      var replies = `<li class='sent'><img src=${currentUserImg}><p>`;
       $(replies + data.msg + '</p></li>').appendTo($('.messages ul'));
       $('.contact.active .preview').html('<span>' + data.msg + '</span>');
       $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
@@ -44,7 +46,7 @@ $(document).ready(function () {
 });
 
 function messageSender(text) {
-  var replies = "<li class='replies'><img src='/static/profilepics/" + profile.replace(/"/g, "") + "'><p>";
+  var replies = `<li class='replies'><img src=${currentUserImg}><p>`;
   var type = $(replies + text + '</p></li>').appendTo($('.messages ul'));
   $('.contact.active .preview').html('<span>You: </span>' + text);
   $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
@@ -64,7 +66,7 @@ function set_message_count(n) {
 
 
 $(document).ready(function () {
-  $("#settings").click(function () {
+  $("#exit").click(function () {
     leave_room();
   });
 });
