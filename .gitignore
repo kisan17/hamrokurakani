@@ -2,7 +2,6 @@ venv/
 .env
 *.pyc
 *.cpython
-.vscode
 rough.py
 works.py
 __pycache__
