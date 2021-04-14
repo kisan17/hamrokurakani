@@ -5,7 +5,7 @@ from hamrokurakani.models import User
 from hamrokurakani.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from datetime import datetime
 
-users = Blueprint('users', __name__)
+users = Blueprint('users', __name__, template_folder='templates')
 
 
 @users.before_request
@@ -21,13 +21,15 @@ def register():
         return redirect(url_for('chat.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(fullname=form.fullname.data, username=form.username.data, email=form.email.data, password=hashed_password)
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
+        user = User(fullname=form.fullname.data, username=form.username.data,
+                    email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Your  account has been created! Happy Staying!!', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('users/register.html', title='Register', form=form)
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -44,7 +46,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('chat.home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('users/login.html', title='Login', form=form)
 
 
 @users.route("/logout")
