@@ -1,8 +1,9 @@
-import os
+from os import path, sep, pardir
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-dotenvsecrets = os.path.join(basedir, '.env')
-database = os.path.join(basedir, 'site.db')
+basedir = path.abspath(path.dirname(__file__))
+rootdir = path.normpath(basedir + sep + pardir)
+dotenvsecrets = path.join(basedir, '.env')
+database = path.join(rootdir, 'site.db')
 
 
 class Configuration:
