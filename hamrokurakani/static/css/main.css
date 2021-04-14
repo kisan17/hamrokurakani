@@ -5,7 +5,7 @@ body {
   scroll-behavior: smooth;
   display: flex;
   justify-content: center;
-  font-family:"Source Sans Pro", "proxima-nova","Roboto Condensed", sans-serif;
+  font-family: "Source Sans Pro", "proxima-nova", "Roboto Condensed", sans-serif;
   font-size: 1em;
   min-height: 100vh;
   text-rendering: optimizeLegibility;
@@ -64,12 +64,10 @@ h6 {
 }
 
 .noti-img {
-
   width: 45px;
   height: 45px;
-  margin-right:16px;
+  margin-right: 16px;
   margin-top: 3px;
-
 }
 
 .account-img {
@@ -101,12 +99,10 @@ a:link.text-muted,
 a:visited.text-muted,
 a:active.text-muted,
 a:hover.text-muted,
-
 a:link.like-action.text-primary,
 a:visited.like-action.text-primary,
 a:active.like-action.text-primary,
-a:hover.like-action.text-primary
-{
+a:hover.like-action.text-primary {
   text-decoration: none;
   background-color: transparent;
 }
@@ -114,17 +110,15 @@ a:hover.like-action.text-primary
 a:link.no-underline,
 a:visited.no-underline,
 a:active.no-underline,
-a:hover.no-underline
-{
+a:hover.no-underline {
   text-decoration: none !important;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 a:link.text,
 a:visited.text,
 a:active.text,
-a:hover.text
-{
+a:hover.text {
   text-decoration: none !important;
   background-color: transparent;
   color: #242424;
@@ -137,7 +131,7 @@ textarea {
   outline-style: none;
   border-width: 0;
   overflow: hidden;
-  -webkit-appearance: none;   
+  -webkit-appearance: none;
   font-size: 16px !important;
   writing-mode: vertical-lr !important;
   white-space: pre-wrap;
@@ -152,14 +146,13 @@ textarea {
 
 textarea:active,
 textarea:hover,
-textarea:focus
-{
+textarea:focus {
   outline: none !important;
   box-shadow: none !important;
-  border-color: transparent !important; 
+  border-color: transparent !important;
 }
 
-textarea.home{
+textarea.home {
   height: 24px;
 }
 
@@ -177,7 +170,7 @@ textarea.home{
 }
 
 button:disabled,
-button[disabled]{
+button[disabled] {
   background-color: #ff5151;
   border: none;
   color: white;
@@ -194,7 +187,7 @@ button[disabled]{
   font-weight: 500;
 }
 
-.post{
+.post {
   text-align: justify;
   font-size: 1.1em;
 }
@@ -205,20 +198,18 @@ button[disabled]{
   margin-right: 10px;
 }
 
-.list-unstyled
-{
-width:100%;
+.list-unstyled {
+  width: 100%;
 }
 
-.fix{
+.fix {
   font: normal 0.9em sans-serif;
 }
 
 .searchbar,
 .searchbar:active,
 .searchbar:hover,
-.searchbar:focus
-{
+.searchbar:focus {
   outline: none !important;
   box-shadow: none !important;
   border-color: transparent !important;
@@ -229,7 +220,6 @@ width:100%;
 
 /*? THIS IS FOR COMMENT SECTION +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*? ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
 
 .comment-section {
   list-style: none;
@@ -247,12 +237,12 @@ width:100%;
 }
 
 .comment.user-comment {
-  color: #FFFFFF;
+  color: #ffffff;
   font: normal 0.9em sans-serif;
 }
 
 .comment.author-comment {
-  color: #FFFFFF;
+  color: #ffffff;
   font: normal 0.9em sans-serif;
   justify-content: flex-end;
 }
@@ -271,7 +261,6 @@ width:100%;
   order: 3;
 }
 
-
 .info a {
   /* Full name */
   display: flex;
@@ -287,9 +276,8 @@ width:100%;
   /* Time */
   font-size: 11px;
   color: #222222;
-  display: block
+  display: block;
 }
-
 
 /* The user avatar */
 
@@ -306,7 +294,6 @@ width:100%;
   order: 2;
   padding: 2px 8px 8px 6px;
   margin: 0px 8px 0px 8px;
-
 }
 
 .comment .avatar img {
@@ -317,7 +304,6 @@ width:100%;
 .comment.user-comment .avatar img {
   float: right;
 }
-
 
 /* The comment bubble */
 
@@ -332,22 +318,21 @@ width:100%;
 .comment.user-comment p {
   background-color: #657786;
   border-top-left-radius: 2.1em;
-  border-top-right-radius: 2.1em; 
+  border-top-right-radius: 2.1em;
   border-bottom-right-radius: 2.1em;
 }
 
 .comment.author-comment p {
-  background-color: #0078FF;
+  background-color: #0078ff;
   border-top-left-radius: 2.1em;
-  border-top-right-radius: 2.1em; 
-  border-bottom-left-radius:  2.1em;
+  border-top-right-radius: 2.1em;
+  border-bottom-left-radius: 2.1em;
   order: 1;
 }
 
 /*? ++++++++++++++++++++++++++++ RESPONSIVE STYLES ++++++++++++++++++++++++++++++++++++++++++++++*/
 
 @media (max-width: 800px) {
-
   /* Make the paragraph in the comments take up the whole width,
     forcing the avatar and user info to wrap to the next line*/
   .comment p {
@@ -400,53 +385,60 @@ width:100%;
   }
 }
 
-.rounded
-{
-  border-radius:8px !important;
+.rounded {
+  border-radius: 8px !important;
 }
 
-html,body{
-      height: 100%;
-    }
-       .container{
-        height: 100%;
-        align-content: center;
-       }
+html,
+body {
+  height: 100%;
+}
+.container {
+  height: 100%;
+  align-content: center;
+}
 
-       .image_outer_container{
-        margin-top: auto;
-        margin-bottom: auto;
-        border-radius: 50%;
-        position: relative;
-       }
+.image_outer_container {
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 50%;
+  position: relative;
+}
 
-       .image_inner_container{
-        border-radius: 50%;
-        padding: 5px;
-        background: #833ab4; 
-        background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4); 
-        background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
-       }
-       .image_inner_container img{
-        height: 200px;
-        width: 200px;
-        border-radius: 50%;
-        border: 5px solid white;
-       }
+.image_inner_container {
+  border-radius: 50%;
+  padding: 5px;
+  background: #833ab4;
+  background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+  background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+}
+.image_inner_container img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 5px solid white;
+}
 
-       .image_outer_container .green_icon{
-         background-color: #4cd137;
-         position: absolute;
-         right: 30px;
-         bottom: 10px;
-         height: 30px;
-         width: 30px;
-         border:5px solid white;
-         border-radius: 50%;
-       }
-.nav-bar{
-  background: #1c92d2;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+.image_outer_container .green_icon {
+  background-color: #4cd137;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+  height: 30px;
+  width: 30px;
+  border: 5px solid white;
+  border-radius: 50%;
+}
+.nav-bar {
+  background: #1c92d2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f2fcfe,
+    #1c92d2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f2fcfe,
+    #1c92d2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
