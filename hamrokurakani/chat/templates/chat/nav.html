@@ -34,9 +34,14 @@
               href="{{ url_for('users.logout') }}">Logout</a>
           </div>
           <div class="navbar-nav ml-auto">
-            <span class="text-white">
-              @{{ current_user.username }}
-            </span>
+            <p class="d-inline-block">
+              <span class="current-user align-middle">
+                <img src="{{ url_for('static', filename='profilepics/' + current_user.image_file) }}" />
+              </span>
+              <span class="text-white align-text-top font-weight-bold">
+                @{{ current_user.username }}
+              </span>
+            </p>
           </div>
           {% else %}
           <a class="nav-item nav-link text-white font-weight-bold text-uppercase"
