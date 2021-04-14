@@ -1,8 +1,9 @@
 from datetime import datetime
-from flask import url_for, current_app, Blueprint
-from hamrokurakani.models import Message
+
+from flask import Blueprint
 from flask_login import current_user
 from hamrokurakani.core.des import Manager
+from hamrokurakani.models import Message
 
 core = Blueprint('core', __name__)
 
@@ -77,6 +78,7 @@ def human_date(datetime_of_event):
         return "1 year"
     message = str(y) + " years"
     return message
+
 
 @core.app_template_filter('decrypt')
 def decrypt_message(given_message):
@@ -171,7 +173,6 @@ def messages_count(sender):
         return (f'{messagescount} convo')
     else:
         return (f'{messagescount} convos')
-
 
 
 @core.app_template_filter('newmessages')

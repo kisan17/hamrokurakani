@@ -1,7 +1,6 @@
 from hamrokurakani import create_app, socketio
 from hamrokurakani.models import *
 
-
 app = create_app()
 
 

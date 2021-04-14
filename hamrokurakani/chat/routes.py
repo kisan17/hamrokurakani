@@ -1,10 +1,11 @@
-from flask import session, redirect, url_for, render_template, request, Blueprint
-from flask_socketio import emit, join_room, leave_room
-from flask_login import current_user, login_required
-from hamrokurakani import socketio, bcrypt, db
-from hamrokurakani.models import User, Message
 from datetime import datetime
+
+from flask import Blueprint, abort, redirect, render_template, session, url_for
+from flask_login import current_user, login_required
+from flask_socketio import emit, join_room, leave_room
+from hamrokurakani import db, socketio
 from hamrokurakani.core.des import Manager
+from hamrokurakani.models import Message, User
 
 chyat = Blueprint('chat', __name__, template_folder='templates')
 

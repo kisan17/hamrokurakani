@@ -1,9 +1,9 @@
-from flask import Flask, redirect, url_for, request
-from flask_admin import Admin, AdminIndexView, expose
+from flask import Flask, redirect, request, url_for
+from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
-from flask_login import current_user, login_user, logout_user
-from hamrokurakani.models import User, Message
+from flask_login import current_user, logout_user
 from hamrokurakani import db, login_manager
+from hamrokurakani.models import Message, User
 
 app = Flask(__name__)
 
