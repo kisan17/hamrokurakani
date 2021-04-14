@@ -14,7 +14,7 @@ chyat = Blueprint('chat', __name__, template_folder='templates')
 @login_required
 def home():
     users = User.query.all()
-    return render_template('chat/home.html', users=users)
+    return render_template('users/home.html', users=users)
 
 
 @chyat.route('/chats')

@@ -1,80 +1,11 @@
 {% extends "chat/nav.html" %}
 {% block content %}
 
-<script type="text/javascript"> var profile = "{{ current_user.image_file }}"; </script>
+<script type="text/javascript"> var profile = "{{ current_user.image_file }}";</script>
 
 <div id="frame">
-    <div id="sidepanel">
-        <div id="profile">
-            <div class="wrap">
-                <img id="profile-img" src="{{ url_for('static', filename='profilepics/' + current_user.image_file) }}"
-                    class="online" />
-                <p>{{ current_user.fullname }} <span><small class="badge badge-secondary">
-                            <b> {{ getuser | countmessages }} </b></small></span> </p>
-
-            </div>
-        </div>
-
-        <div id="search">
-            <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-            <input type="text" placeholder="Search contacts..." />
-        </div>
-
-        <!--? CONTACT SECTION -->
-        <div id="contacts">
-            <ul>
-                {% for sender in senders %}
-                {% if sender != current_user %}
-                {% if sender == getuser %}
-                <li class="contact active">
-                    {% else %}
-                <li class="contact">
-                    {% endif %}
-                    <a class="noblue" href="{{ url_for('chat.chatwith', user=sender.username) }}">
-                        <div class="wrap">
-                            {% if sender != getuser and sender.last_message_read_time | isactive == 'offline' %}
-                            <span class="contact-status"></span>
-                            {% elif sender != getuser and sender.last_message_read_time | isactive != 'offline' %}
-                            <span class="contact-status online"></span>
-                            {% else %}
-                            {% endif %}
-                            <img src="{{ url_for('static', filename='profilepics/' + sender.image_file) }}" />
-
-                            <div class="meta">
-                                <p class="name">{{ sender.fullname }}</p>
-                                {% if sender | lastmessageauthor == current_user %}
-                                <p class="preview"><span>You: </span> {{ sender | lastmessage }}</p>
-                                {% else %}
-                                <p class="preview"><span>{{ sender | lastmessage }} </span></p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                {% else %}
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-
-        <div id="bottom-bar">
-            <button id="addcontact">
-                <ul>
-                    <li>
-                        <a href="#PeopleToMessage" data-toggle="modal" data-target="#PeopleToMessage" class="noblue">
-                            <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add Contact</span></a></li>
-                </ul>
-            </button>
-            <button id="settings">
-                <ul>
-                    <li class="disconnect"><a href="{{ url_for('chat.home') }}" class="noblue">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i><span>Exit</span></a></li>
-                </ul>
-            </button>
-        </div>
-
-    </div>
-
+    <!-- ? SIDEPANEL SECTION -->
+    {% include "chat/sidepanel.html" %}
     <!-- ? MAIN MESSAGE SECTION -->
     <div class="content">
         <div class="contact-profile">
@@ -82,7 +13,8 @@
             <p>{{getuser.fullname}}
                 {% if getuser.last_message_read_time | isactive == 'offline' %}
                 <small class="badge badge-pill badge-secondary"><b> {{ getuser.last_message_read_time | isactive }}
-                    </b></small></p>
+                    </b></small>
+            </p>
             {% else %}
             <small class="badge badge-pill badge-success"><b> {{ getuser.last_message_read_time | isactive }}
                 </b></small></p>
