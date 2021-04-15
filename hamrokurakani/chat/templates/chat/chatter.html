@@ -4,18 +4,10 @@
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">
-            <div class="wrap">
-                <img id="profile-img" src="{{ url_for('static', filename='profilepics/' + current_user.image_file) }}"
-                    class="online" />
-                <p>{{ current_user.fullname }} <span><small class="badge badge-secondary">
-                            <b> {{ getuser | countmessages }} </b></small></span> </p>
-
-            </div>
-        </div>
-
-        <div id="search">
-            <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-            <input type="text" placeholder="Search contacts..." />
+            <p class="h5 font-weight-bold">Hamrokurani</p>
+            <p class="text-muted small font-weight-bold"><span>
+                    total messages: {{ getuser | countmessages }}
+                </span></p>
         </div>
 
         <!--? CONTACT SECTION -->
