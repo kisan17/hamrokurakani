@@ -34,7 +34,7 @@ def register():
     return render_template('users/register.html', title='Register', form=form)
 
 
-@users.route("/login", methods=['GET', 'POST'])
+@users.route("/", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('chat.home'))
