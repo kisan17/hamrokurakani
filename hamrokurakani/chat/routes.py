@@ -25,9 +25,6 @@ def chatwith(user):
     messages = []
     session['receiver_id'] = getuser.id
     session['room'] = int(getuser.id) * int(current_user.id)
-    my_messages = Message.query.filter_by(recipient_id=current_user.id)
-    messengers = [message.author.id for message in my_messages]
-    senders = [User.query.get(sender) for sender in set(messengers)]
     msgs_received = list(Message.query.filter_by(
         recipient_id=current_user.id, sender_id=getuser.id).all())
     msgs_sent = list(Message.query.filter_by(
@@ -38,7 +35,7 @@ def chatwith(user):
     for message in msgs_received:
         message.is_seen = True
     db.session.commit()
-    return render_template('chat/chatter.html', getuser=getuser, senders=senders, messages=messages)
+    return render_template('chat/chatter.html', getuser=getuser, users=User.query.all(), messages=messages)
 
 
 @chyat.route("/chatwith/<string:user>/deletemessage/<int:id>/")

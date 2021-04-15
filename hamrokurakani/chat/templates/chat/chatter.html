@@ -13,29 +13,33 @@
         <!--? CONTACT SECTION -->
         <div id="contacts">
             <ul>
-                {% for sender in senders %}
-                {% if sender != current_user %}
-                {% if sender == getuser %}
+                {% for user in users %}
+                {% if user != current_user %}
+                {% if user == getuser %}
                 <li class="contact active">
                     {% else %}
                 <li class="contact">
                     {% endif %}
-                    <a class="noblue" href="{{ url_for('chat.chatwith', user=sender.username) }}">
+                    <a class="noblue" href="{{ url_for('chat.chatwith', user=user.username) }}">
                         <div class="wrap">
-                            {% if sender != getuser and sender.last_message_read_time | isactive == 'offline' %}
+                            {% if user != getuser and user.last_message_read_time | isactive == 'offline' %}
                             <span class="contact-status"></span>
-                            {% elif sender != getuser and sender.last_message_read_time | isactive != 'offline' %}
+                            {% elif user != getuser and user.last_message_read_time | isactive != 'offline' %}
                             <span class="contact-status online"></span>
                             {% else %}
                             {% endif %}
-                            <img src="{{ url_for('static', filename='profilepics/' + sender.image_file) }}" />
+                            <img src="{{ url_for('static', filename='profilepics/' + user.image_file) }}" />
 
                             <div class="meta">
-                                <p class="name">{{ sender.fullname }}</p>
-                                {% if sender | lastmessageauthor == current_user %}
-                                <p class="preview"><span>You: </span> {{ sender | lastmessage }}</p>
+                                <p class="name">{{ user.fullname }}</p>
+                                {% if user | lastmessageauthor == current_user %}
+                                <p class="preview"><span>You: </span>{{ user | lastmessage }}</p>
                                 {% else %}
-                                <p class="preview"><span>{{ sender | lastmessage }} </span></p>
+                                {% if not user | lastmessage %}
+                                <p class="preview"><span>no conversations yet</span></p>
+                                {% else %}
+                                <p class="preview"><span>{{ user | lastmessage }}</span></p>
+                                {% endif %}
                                 {% endif %}
                             </div>
                         </div>

@@ -140,10 +140,10 @@ def last_message(sender):
         return msg_received.message
     elif msg_sent and not msg_received:
         return msg_sent.message
-    elif msg_received.timestamp > msg_sent.timestamp:
-        return msg_received.message
-    elif msg_sent.timestamp > msg_received.timestamp:
-        return msg_sent.message
+    elif msg_received and msg_received:
+        return msg_received.message if msg_received.timestamp > msg_sent.timestamp else msg_sent.message
+    else:
+        None
 
 
 @core.app_template_filter('lastmessageauthor')
@@ -156,10 +156,10 @@ def last_message_author(sender):
         return msg_received.author
     elif msg_sent and not msg_received:
         return msg_sent.author
-    elif msg_received.timestamp > msg_sent.timestamp:
-        return msg_received.author
-    elif msg_sent.timestamp > msg_received.timestamp:
-        return msg_sent.author
+    elif msg_received and msg_received:
+        return msg_received.author if msg_received.timestamp > msg_sent.timestamp else msg_sent.author
+    else:
+        None
 
 
 @core.app_template_filter('countmessages')
@@ -169,10 +169,7 @@ def messages_count(sender):
     messagessent = Message.query.filter_by(
         sender_id=current_user.id, recipient_id=sender.id)
     messagescount = messagesreceived.count() + messagessent.count()
-    if messagescount == 1:
-        return (f'{messagescount} convo')
-    else:
-        return (f'{messagescount} convos')
+    return messagescount
 
 
 @core.app_template_filter('newmessages')
