@@ -10,7 +10,7 @@ from hamrokurakani.models import Message, User
 chyat = Blueprint('chat', __name__, template_folder='templates')
 
 
-@chyat.route('/')
+@chyat.route('/chats')
 @login_required
 def home():
     users = User.query.all()
