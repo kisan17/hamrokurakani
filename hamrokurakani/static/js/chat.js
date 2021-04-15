@@ -47,10 +47,10 @@ $(document).ready(function () {
 
 function messageSender(text) {
   var replies = `<li class='replies'><img src=${currentUserImg}><p>`;
-  var type = $(replies + text + '</p></li>').appendTo($('.messages ul'));
+  var theType = $(replies + text + '</p></li>').appendTo($('.messages ul'));
   $('.contact.active .preview').html('<span>You: </span>' + text);
   $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
-  return type;
+  return theType;
 }
 
 function leave_room() {
