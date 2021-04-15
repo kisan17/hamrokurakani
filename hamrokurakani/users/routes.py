@@ -1,9 +1,11 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
-from flask_login import login_user, current_user, logout_user, login_required
-from hamrokurakani import db, bcrypt, login_manager
-from hamrokurakani.models import User
-from hamrokurakani.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from datetime import datetime
+
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required, login_user, logout_user
+from hamrokurakani import bcrypt, db
+from hamrokurakani.core.utils import human_date, save_picture
+from hamrokurakani.models import User
+from hamrokurakani.users.forms import LoginForm, RegistrationForm, UpdateAccountForm
 
 users = Blueprint('users', __name__, template_folder='templates')
 
@@ -47,6 +49,32 @@ def login():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('users/login.html', title='Login', form=form)
+
+
+@users.route("/settings", methods=['GET', 'POST'])
+@login_required
+def settings():
+    date = human_date(current_user.joined)
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        if form.picture.data:
+            username = current_user.username
+            picture_file = save_picture(username, form.picture.data)
+            current_user.image_file = picture_file
+        current_user.fullname = form.fullname.data
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('users.settings'))
+    elif request.method == 'GET':
+        form.fullname.data = current_user.fullname
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.picture.data = current_user.image_file
+    image_file = url_for(
+        'static', filename='profilepics/' + current_user.image_file)
+    return render_template('users/setting.html', title='Account', image_file=image_file, form=form, date=date)
 
 
 @users.route("/logout")
