@@ -13,13 +13,6 @@ chyat = Blueprint('chat', __name__, template_folder='templates')
 @chyat.route('/')
 @login_required
 def home():
-    users = User.query.all()
-    return render_template('users/home.html', users=users)
-
-
-@chyat.route('/chats')
-@login_required
-def chats():
     senders = User.query.all()
     users = len(list(senders))
     return render_template('chat/users.html', senders=senders, users=users)
@@ -40,10 +33,8 @@ def chatwith(user):
     msgs_sent = list(Message.query.filter_by(
         recipient_id=getuser.id, sender_id=current_user.id).all())
     messages = msgs_received + msgs_sent
-
     messages.sort(key=lambda order_by: order_by.timestamp)
     current_user.last_message_read_time = datetime.now()
-    # ? NEED TO USE AJAX HERE current_user.unread_message_count = msgs_received.count()
     for message in msgs_received:
         message.is_seen = True
     db.session.commit()
@@ -59,6 +50,7 @@ def deletemessage(user, id):
     db.session.delete(message)
     db.session.commit()
     return redirect(url_for('chat.chatwith', user=user))
+
 
 ##? SOCKET WORK BELOW ################################################################
 
