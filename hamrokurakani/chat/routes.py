@@ -13,9 +13,9 @@ chyat = Blueprint('chat', __name__, template_folder='templates')
 @chyat.route('/')
 @login_required
 def home():
-    senders = User.query.all()
-    users = len(list(senders))
-    return render_template('chat/users.html', senders=senders, users=users)
+    users = User.query.all()
+    total_users = len(list(users))
+    return render_template('chat/users.html', users=users, total_users=total_users)
 
 
 @chyat.route('/chatwith/<string:user>')

@@ -6,24 +6,24 @@
         <div id="profile">
             <p class="h5 font-weight-bold">Hamrokurani</p>
             <p class="text-muted small font-weight-bold"><span>
-                    total users: {{users}}
+                    total users: {{total_users}}
                 </span></p>
         </div>
 
         <div id="contacts">
             <ul>
-                {% for sender in senders %}
+                {% for user in users %}
                 <li class="contact">
-                    <a class="noblue" href="{{ url_for('chat.chatwith', user=sender.username) }}">
+                    <a class="noblue" href="{{ url_for('chat.chatwith', user=user.username) }}">
                         <div class="wrap">
-                            {% if sender.last_message_read_time | isactive == 'offline' %}
+                            {% if user.last_message_read_time | isactive == 'offline' %}
                             <span class="contact-status"></span>
                             {% else %}
                             <span class="contact-status online"></span>
                             {% endif %}
-                            <img src="{{ url_for('static', filename='profilepics/' + sender.image_file) }}" />
+                            <img src="{{ url_for('static', filename='profilepics/' + user.image_file) }}" />
                             <div class="meta">
-                                <p class="name">{{ sender.fullname }} </p>
+                                <p class="name">{{ user.fullname }} </p>
 
                                 <p class="preview">
                                     {% if sender | newmessages > 0 %}
@@ -31,7 +31,7 @@
                                             Messages</b></small>
                                     {% else %}
                                     {% endif %}
-                                    <span class="small font-weight-bold">last active {{ sender.last_message_read_time |
+                                    <span class="small font-weight-bold">last active {{ user.last_message_read_time |
                                         humanify }}
                                         ago</span>
                                 </p>
