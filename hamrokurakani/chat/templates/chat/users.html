@@ -4,16 +4,10 @@
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">
-            <div class="wrap">
-                <img id="profile-img" src="{{ url_for('static', filename='profilepics/' + current_user.image_file) }}"
-                    class="online" />
-                <p>{{ current_user.fullname }}</p>
-            </div>
-        </div>
-
-        <div id="search">
-            <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-            <input type="text" placeholder="Search contacts..." />
+            <p class="h5 font-weight-bold">Hamrokurani Users</p>
+            <p class="text-muted small font-weight-bold"><span>
+                    total users: {{users}}
+                </span></p>
         </div>
 
         <div id="contacts">
@@ -30,24 +24,17 @@
                             <img src="{{ url_for('static', filename='profilepics/' + sender.image_file) }}" />
                             <div class="meta">
                                 <p class="name">{{ sender.fullname }} </p>
-                                {% if sender | lastmessageauthor == current_user %}
-                                <p class="preview">
-                                    {% if sender | newmessages > 0 %}
-                                    <small class="badge badge-dark mb-1"><b> {{ sender | newmessages }} </b></small>
-                                    {% else %}
-                                    {% endif %}
-                                    <span>You: </span> {{ sender | lastmessage }}
-                                </p>
-                                {% else %}
+
                                 <p class="preview">
                                     {% if sender | newmessages > 0 %}
                                     <small class="badge badge-dark mb-1"><b> {{ sender | newmessages }}
                                             Messages</b></small>
                                     {% else %}
                                     {% endif %}
-                                    <span>{{ sender | lastmessage }}</span>
+                                    <span class="small font-weight-bold">last active {{ sender.last_message_read_time |
+                                        humanify }}
+                                        ago</span>
                                 </p>
-                                {% endif %}
                             </div>
                         </div>
                     </a>

@@ -20,10 +20,9 @@ def home():
 @chyat.route('/chats')
 @login_required
 def chats():
-    my_messages = Message.query.filter_by(recipient_id=current_user.id)
-    messengers = [message.author.id for message in my_messages]
-    senders = [User.query.get(sender) for sender in set(messengers)]
-    return render_template('chat/users.html', senders=senders)
+    senders = User.query.all()
+    users = len(list(senders))
+    return render_template('chat/users.html', senders=senders, users=users)
 
 
 @chyat.route('/chatwith/<string:user>')
