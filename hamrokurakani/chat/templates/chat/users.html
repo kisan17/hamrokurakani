@@ -13,6 +13,7 @@
         <div id="contacts">
             <ul>
                 {% for user in users %}
+                {% if user != current_user %}
                 <li class="contact">
                     <a class="noblue" href="{{ url_for('chat.chatwith', user=user.username) }}">
                         <div class="wrap">
@@ -39,6 +40,7 @@
                         </div>
                     </a>
                 </li>
+                {% endif %}
                 {% endfor %}
             </ul>
         </div>

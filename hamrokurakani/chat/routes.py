@@ -4,7 +4,7 @@ from flask import Blueprint, abort, redirect, render_template, session, url_for
 from flask_login import current_user, login_required
 from flask_socketio import emit, join_room, leave_room
 from hamrokurakani import db, socketio
-from hamrokurakani.core.des import Manager
+from hamrokurakani.core.des import DesKey
 from hamrokurakani.models import Message, User
 
 chyat = Blueprint('chat', __name__, template_folder='templates')
@@ -61,13 +61,15 @@ def joined(message):
 
 @socketio.on('text', namespace='/chatwith')
 def text(message):
-    manager = Manager("kisan123")
+    key = "kisan123".encode()
+    manager = DesKey(key)
     profileimg = f"/static/profilepics/{current_user.image_file}"
     receiver = session.get('receiver_id')
     room = session.get('room')
+    the_msg = manager.encrypt(message["msg"].encode(), padding=True)
     user = User.query.filter_by(id=receiver).first_or_404()
     msg = Message(author=current_user, recipient=user,
-                  message=manager.encrypt(message['msg']))
+                  message=the_msg)
     db.session.add(msg)
     user.unread_message_count()
     db.session.commit()
